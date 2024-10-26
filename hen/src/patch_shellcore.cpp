@@ -7,6 +7,13 @@
 #include "patch_shellcore.h"
 #include "proc.h"
 
+#include "shellcore_patches/1_12.h"
+#include "shellcore_patches/1_14.h"
+#include "shellcore_patches/2_00.h"
+#include "shellcore_patches/2_20.h"
+#include "shellcore_patches/2_25.h"
+#include "shellcore_patches/2_26.h"
+#include "shellcore_patches/2_30.h"
 #include "shellcore_patches/2_50.h"
 
 /**
@@ -161,6 +168,34 @@ void apply_shellcore_patches()
     printf("apply_shellcore_patches: fw_ver = 0x%lx\n", fw_ver);
 
     switch (fw_ver) {
+    case 0x1120000:
+        patches = (struct patch *) &g_shellcore_patches_112;
+        num_patches = sizeof(g_shellcore_patches_112) / sizeof(struct patch);
+        break;
+    case 0x1140000:
+        patches = (struct patch *) &g_shellcore_patches_114;
+        num_patches = sizeof(g_shellcore_patches_114) / sizeof(struct patch);
+        break;
+    case 0x2000000:
+        patches = (struct patch *) &g_shellcore_patches_200;
+        num_patches = sizeof(g_shellcore_patches_200) / sizeof(struct patch);
+        break;
+    case 0x2200000:
+        patches = (struct patch *) &g_shellcore_patches_220;
+        num_patches = sizeof(g_shellcore_patches_220) / sizeof(struct patch);
+        break;
+    case 0x2250000:
+        patches = (struct patch *) &g_shellcore_patches_225;
+        num_patches = sizeof(g_shellcore_patches_225) / sizeof(struct patch);
+        break;
+    case 0x2260000:
+        patches = (struct patch *) &g_shellcore_patches_226;
+        num_patches = sizeof(g_shellcore_patches_226) / sizeof(struct patch);
+        break;
+    case 0x2300000:
+        patches = (struct patch *) &g_shellcore_patches_230;
+        num_patches = sizeof(g_shellcore_patches_230) / sizeof(struct patch);
+        break;
     case 0x2500000:
         patches = (struct patch *) &g_shellcore_patches_250;
         num_patches = sizeof(g_shellcore_patches_250) / sizeof(struct patch);

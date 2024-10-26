@@ -15,7 +15,7 @@ struct hook g_kernel_hooks_110[] = {
 struct patch g_kernel_patches_110[] = {
     {
         /*
-            mov qword ptr [rdi + 0x408], ;
+            mov qword ptr [rdi + 0x408], 0xc0ffee;
             xor eax, eax;
             ret
         */
