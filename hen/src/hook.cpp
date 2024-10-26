@@ -5,6 +5,16 @@
 #include "hook.h"
 #include "kdlsym.h"
 
+#include "hooks/1_10.h"
+#include "hooks/1_11.h"
+#include "hooks/1_12.h"
+#include "hooks/1_13.h"
+#include "hooks/1_14.h"
+#include "hooks/2_00.h"
+#include "hooks/2_20.h"
+#include "hooks/2_25.h"
+#include "hooks/2_26.h"
+#include "hooks/2_30.h"
 #include "hooks/2_50.h"
 
 struct hook *find_hook(hook_id id)
@@ -22,6 +32,46 @@ struct hook *find_hook(hook_id id)
     //     hooks = (struct hook *) &g_kernel_hooks_105;
     //     num_hooks = sizeof(g_kernel_hooks_105) / sizeof(struct hook);
     //     break;
+    case 0x1100000:
+        hooks = (struct hook *) &g_kernel_hooks_110;
+        num_hooks = sizeof(g_kernel_hooks_110) / sizeof(struct hook);
+        break;
+    case 0x1110000:
+        hooks = (struct hook *) &g_kernel_hooks_111;
+        num_hooks = sizeof(g_kernel_hooks_111) / sizeof(struct hook);
+        break;
+    case 0x1120000:
+        hooks = (struct hook *) &g_kernel_hooks_112;
+        num_hooks = sizeof(g_kernel_hooks_112) / sizeof(struct hook);
+        break;
+    case 0x1130000:
+        hooks = (struct hook *) &g_kernel_hooks_113;
+        num_hooks = sizeof(g_kernel_hooks_113) / sizeof(struct hook);
+        break;
+    case 0x1140000:
+        hooks = (struct hook *) &g_kernel_hooks_114;
+        num_hooks = sizeof(g_kernel_hooks_114) / sizeof(struct hook);
+        break;
+    case 0x2000000:
+        hooks = (struct hook *) &g_kernel_hooks_200;
+        num_hooks = sizeof(g_kernel_hooks_200) / sizeof(struct hook);
+        break;
+    case 0x2200000:
+        hooks = (struct hook *) &g_kernel_hooks_220;
+        num_hooks = sizeof(g_kernel_hooks_220) / sizeof(struct hook);
+        break;
+    case 0x2250000:
+        hooks = (struct hook *) &g_kernel_hooks_225;
+        num_hooks = sizeof(g_kernel_hooks_225) / sizeof(struct hook);
+        break;
+    case 0x2260000:
+        hooks = (struct hook *) &g_kernel_hooks_226;
+        num_hooks = sizeof(g_kernel_hooks_226) / sizeof(struct hook);
+        break;
+    case 0x2300000:
+        hooks = (struct hook *) &g_kernel_hooks_230;
+        num_hooks = sizeof(g_kernel_hooks_230) / sizeof(struct hook);
+        break;
     case 0x2500000:
         hooks = (struct hook *) &g_kernel_hooks_250;
         num_hooks = sizeof(g_kernel_hooks_250) / sizeof(struct hook);
