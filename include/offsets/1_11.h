@@ -1,7 +1,7 @@
-#ifndef OFFSETS_1_13_H
-#define OFFSETS_1_13_H
+#ifndef OFFSETS_1_11_H
+#define OFFSETS_1_11_H
 
-uint64_t g_sym_map_113[] = {
+uint64_t g_sym_map_111[] = {
     0x4ADF5B0,          // KERNEL_SYM_DMPML4I
     0x4ADF5B4,          // KERNEL_SYM_DMPDPI
     0x4ADF30C,          // KERNEL_SYM_PML4PML4I
@@ -13,11 +13,11 @@ uint64_t g_sym_map_113[] = {
     0x0042000,          // KERNEL_SYM_GADGET_JMP_PTR_RSI
 };
 
-uint64_t g_patch_map_113[] = {
+uint64_t g_patch_map_111[] = {
     0x05A9C80,          // KERNEL_PATCH_HAS_MMAP_SELF_CAPABILITY
     0x05A9C90,          // KERNEL_PATCH_IS_ALLOWED_TO_MMAP_SELF
     0x0981A69,          // KERNEL_PATCH_MMAP_SELF_CALL_IS_LOADABLE
     0x02F1810,          // KERNEL_PATCH_SYS_GETGID
 };
 
-#endif // OFFSETS_1_13_H
+#endif // OFFSETS_1_11_H
