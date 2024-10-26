@@ -15,6 +15,16 @@ extern "C"
 #include "patching.h"
 
 #include "patches/1_05.h"
+#include "patches/1_10.h"
+#include "patches/1_11.h"
+#include "patches/1_12.h"
+#include "patches/1_13.h"
+#include "patches/1_14.h"
+#include "patches/2_00.h"
+#include "patches/2_20.h"
+#include "patches/2_25.h"
+#include "patches/2_26.h"
+#include "patches/2_30.h"
 #include "patches/2_50.h"
 
 int apply_kernel_patches()
@@ -35,6 +45,46 @@ int apply_kernel_patches()
     case 0x1050000:
         patches = (struct patch *) &g_kernel_patches_105;
         num_patches = sizeof(g_kernel_patches_105) / sizeof(struct patch);
+        break;
+    case 0x1100000:
+        patches = (struct patch *) &g_kernel_patches_110;
+        num_patches = sizeof(g_kernel_patches_110) / sizeof(struct patch);
+        break;
+    case 0x1110000:
+        patches = (struct patch *) &g_kernel_patches_111;
+        num_patches = sizeof(g_kernel_patches_111) / sizeof(struct patch);
+        break;
+    case 0x1120000:
+        patches = (struct patch *) &g_kernel_patches_112;
+        num_patches = sizeof(g_kernel_patches_112) / sizeof(struct patch);
+        break;
+    case 0x1130000:
+        patches = (struct patch *) &g_kernel_patches_113;
+        num_patches = sizeof(g_kernel_patches_113) / sizeof(struct patch);
+        break;
+    case 0x1140000:
+        patches = (struct patch *) &g_kernel_patches_114;
+        num_patches = sizeof(g_kernel_patches_114) / sizeof(struct patch);
+        break;
+    case 0x2000000:
+        patches = (struct patch *) &g_kernel_patches_200;
+        num_patches = sizeof(g_kernel_patches_200) / sizeof(struct patch);
+        break;
+    case 0x2200000:
+        patches = (struct patch *) &g_kernel_patches_220;
+        num_patches = sizeof(g_kernel_patches_220) / sizeof(struct patch);
+        break;
+    case 0x2250000:
+        patches = (struct patch *) &g_kernel_patches_225;
+        num_patches = sizeof(g_kernel_patches_225) / sizeof(struct patch);
+        break;
+    case 0x2260000:
+        patches = (struct patch *) &g_kernel_patches_226;
+        num_patches = sizeof(g_kernel_patches_226) / sizeof(struct patch);
+        break;
+    case 0x2300000:
+        patches = (struct patch *) &g_kernel_patches_230;
+        num_patches = sizeof(g_kernel_patches_230) / sizeof(struct patch);
         break;
     case 0x2500000:
         patches = (struct patch *) &g_kernel_patches_250;
