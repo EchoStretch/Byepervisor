@@ -18,7 +18,7 @@ The primary and recommended exploit takes advantage of the fact that system Qual
 These flags are not reinitialized by the secure loader upon resume from sleep mode, though the hypervisor is. By setting the SL flag, putting the system to sleep, and resuming, we can edit the guest kernel's pagetables to make kernel .text pages read/writable, allowing dumping of the kernel and hooks/patches.
 
 ## Important Notes
-- Currently only 2.50 FW is supported for Homebrew Enabler (HEN), support for other firmware versions will be added at a later time.
+- Currently only listed FW is supported for Homebrew Enabler (HEN), support for other firmware versions will be added at a later time.
 - The exploit payload (byepervisor.elf) will need to be sent twice, once before suspending the system and again after resuming.
 - You will have to put the system into rest mode manually yourself
 - Kernel dump from QA flags exploit will not contain hypervisor's .data region at the moment, if this is important for you, dump using the jump table exploit after porting or disable nested paging first (this is a TODO)
@@ -29,7 +29,7 @@ These flags are not reinitialized by the secure loader upon resume from sleep mo
 - Homebrew enabler (HEN) (fself+fpkg)
 
 ## Firmware Status
-Completed: 1.12, 1.14, 2.00, 2.20, 2.25, 2.26, 2.30, 2.50 
+Completed: 1.12, 1.14, 2.00, 2.20, 2.25, 2.26, 2.30, 2.50, 2.70
 
 ## Build notes
 This exploit payload is built using the [PS5-Payload-Dev SDK](https://github.com/ps5-payload-dev/sdk). Note also that the build for `hen/` is slightly special, as it gets compiled to a flat binary thats copied into a kernel code cave. The entirety of code in `hen/` runs in supervisor/kernel mode.

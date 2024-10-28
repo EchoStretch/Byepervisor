@@ -69,6 +69,7 @@ uint64_t kdlsym(ksym_t sym)
     case 0x2300000:
         return g_kernel_base + g_sym_map_230[sym];
     case 0x2500000:
+    case 0x2700000:
         return g_kernel_base + g_sym_map_250[sym];
     }
 

@@ -197,6 +197,7 @@ void apply_shellcore_patches()
         num_patches = sizeof(g_shellcore_patches_230) / sizeof(struct patch);
         break;
     case 0x2500000:
+    case 0x2700000:
         patches = (struct patch *) &g_shellcore_patches_250;
         num_patches = sizeof(g_shellcore_patches_250) / sizeof(struct patch);
         break;

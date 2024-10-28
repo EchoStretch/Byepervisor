@@ -74,6 +74,7 @@ struct hook *find_hook(hook_id id)
         num_hooks = sizeof(g_kernel_hooks_230) / sizeof(struct hook);
         break;
     case 0x2500000:
+    case 0x2700000:
         hooks = (struct hook *) &g_kernel_hooks_250;
         num_hooks = sizeof(g_kernel_hooks_250) / sizeof(struct hook);
         break;
