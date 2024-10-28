@@ -1,6 +1,7 @@
 #include <stdint.h>
 
 #include "kdlsym.h"
+#include "offsets/1_05.h"
 #include "offsets/1_10.h"
 #include "offsets/1_11.h"
 #include "offsets/1_12.h"
@@ -45,6 +46,8 @@ uint64_t kdlsym(ksym_t sym)
         return 0;
 
     switch (g_fw_version) {
+    case 0x1050000:
+        return g_kernel_base + g_sym_map_105[sym];
     case 0x1100000:
         return g_kernel_base + g_sym_map_110[sym];
     case 0x1110000:

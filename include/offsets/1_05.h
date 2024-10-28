@@ -7,6 +7,10 @@ uint64_t g_sym_map_105[] = {
     0x4ADF30C,          // KERNEL_SYM_PML4PML4I
     0x4ADF328,          // KERNEL_SYM_PMAP_STORE
     0x7980000,          // KERNEL_SYM_DATA_CAVE
+    0x0044000,          // KERNEL_SYM_CODE_CAVE
+    0x1CA2690,          // KERNEL_SYM_PS4_SYSENT
+    0x1CAA890,          // KERNEL_SYM_PPR_SYSENT
+    0x0042000,          // KERNEL_SYM_GADGET_JMP_PTR_RSI
 };
 
 uint64_t g_patch_map_105[] = {

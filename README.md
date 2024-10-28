@@ -26,7 +26,10 @@ These flags are not reinitialized by the secure loader upon resume from sleep mo
 ## Currently included
 - Kernel dumping code (commented out, running this code *will* panic the system as it will try to dump as much as it can before hitting unmapped memory)
 - Code to decrypt system library SELFs over TCP
-- Homebrew enabler (HEN) for 2.50 firmware (fself+fpkg)
+- Homebrew enabler (HEN) (fself+fpkg)
+
+## Firmware Status
+Completed: 1.12, 1.14, 2.00, 2.20, 2.25, 2.26, 2.30, 2.50 
 
 ## Build notes
 This exploit payload is built using the [PS5-Payload-Dev SDK](https://github.com/ps5-payload-dev/sdk). Note also that the build for `hen/` is slightly special, as it gets compiled to a flat binary thats copied into a kernel code cave. The entirety of code in `hen/` runs in supervisor/kernel mode.
