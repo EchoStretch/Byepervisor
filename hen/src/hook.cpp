@@ -5,6 +5,9 @@
 #include "hook.h"
 #include "kdlsym.h"
 
+#include "hooks/1_00.h"
+#include "hooks/1_01.h"
+#include "hooks/1_02.h"
 #include "hooks/1_05.h"
 #include "hooks/1_10.h"
 #include "hooks/1_11.h"
@@ -29,6 +32,15 @@ struct hook *find_hook(hook_id id)
     auto printf = (void (*)(const char *fmt, ...)) kdlsym(KERNEL_SYM_PRINTF);
 
     switch (fw_ver) {
+    case 0x1000000:
+         hooks = (struct hook *) &g_kernel_hooks_100;
+         num_hooks = sizeof(g_kernel_hooks_100) / sizeof(struct hook);
+         break;
+    case 0x1010000:
+    case 0x1020000:
+         hooks = (struct hook *) &g_kernel_hooks_102;
+         num_hooks = sizeof(g_kernel_hooks_102) / sizeof(struct hook);
+         break;
     case 0x1050000:
          hooks = (struct hook *) &g_kernel_hooks_105;
          num_hooks = sizeof(g_kernel_hooks_105) / sizeof(struct hook);

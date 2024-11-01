@@ -21,7 +21,7 @@ extern "C" {
 #include "mirror.h"
 #include "paging.h"
 #include "patching.h"
-#include "self.h"
+//#include "self.h"
 #include "util.h"
 
 int g_debug_sock = -1;
@@ -181,7 +181,7 @@ int main()
 
     SOCK_LOG("[+] Aft. hook is_development_mode = 0x%x\n", __sys_is_development_mode());
 
-    run_self_server(9004);
+    //run_self_server(9004);
     reset_mirrors();
     return 0;
 }

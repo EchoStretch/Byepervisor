@@ -14,6 +14,9 @@ extern "C"
 #include "kdlsym.h"
 #include "patching.h"
 
+#include "patches/1_00.h"
+#include "patches/1_01.h"
+#include "patches/1_02.h"
 #include "patches/1_05.h"
 #include "patches/1_10.h"
 #include "patches/1_11.h"
@@ -42,6 +45,18 @@ int apply_kernel_patches()
     SOCK_LOG("apply_kernel_patches: fw_ver=0x%lx\n", fw_ver);
 
     switch (fw_ver) {
+    case 0x1000000:
+        patches = (struct patch *) &g_kernel_patches_100;
+        num_patches = sizeof(g_kernel_patches_100) / sizeof(struct patch);
+        break;
+    case 0x1010000:
+        patches = (struct patch *) &g_kernel_patches_101;
+        num_patches = sizeof(g_kernel_patches_101) / sizeof(struct patch);
+        break;
+    case 0x1020000:
+        patches = (struct patch *) &g_kernel_patches_102;
+        num_patches = sizeof(g_kernel_patches_102) / sizeof(struct patch);
+        break;
     case 0x1050000:
         patches = (struct patch *) &g_kernel_patches_105;
         num_patches = sizeof(g_kernel_patches_105) / sizeof(struct patch);
