@@ -133,10 +133,10 @@ int main()
     if (kernel_read4(kdlsym(KERNEL_SYM_DATA_CAVE)) != 0x1337) {
         // Notify the user that they have to suspend/resume their console
         SOCK_LOG("[+] System needs to be suspended and resumed...\n");
-        flash_notification("Byepervisor\nEnter rest mode & resume");
         kernel_write4(kdlsym(KERNEL_SYM_DATA_CAVE), 0x1337);
 
-        return 0;
+        // auto suspend
+        sceSystemStateMgrEnterStandby(); // LightningMods' commit 60c2ebf
     }
 
     // Print out the kernel base
