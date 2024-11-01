@@ -29,7 +29,7 @@ These flags are not reinitialized by the secure loader upon resume from sleep mo
 - Homebrew enabler (HEN) (fself+fpkg)
 
 ## Firmware Status
-Completed: 1.12, 1.14, 2.00, 2.20, 2.25, 2.26, 2.30, 2.50, 2.70
+Completed: 1.00, 1.01, 1.02, 1.05, 1.12, 1.14, 2.00, 2.20, 2.25, 2.26, 2.30, 2.50, 2.70
 
 ## Build notes
 This exploit payload is built using the [PS5-Payload-Dev SDK](https://github.com/ps5-payload-dev/sdk). Note also that the build for `hen/` is slightly special, as it gets compiled to a flat binary thats copied into a kernel code cave. The entirety of code in `hen/` runs in supervisor/kernel mode.

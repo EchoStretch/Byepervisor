@@ -73,7 +73,7 @@ struct patch g_kernel_patches_110[] = {
     }, 
     {
         "panic patch 2",
-        0x405656,
+        0x40565b,
         "\xEB\xFE",
         2
     }, 

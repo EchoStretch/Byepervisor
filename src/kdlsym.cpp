@@ -8,6 +8,9 @@ extern "C"
 #include "debug_log.h"
 #include "kdlsym.h"
 
+#include "offsets/1_00.h"
+#include "offsets/1_01.h"
+#include "offsets/1_02.h"
 #include "offsets/1_05.h"
 #include "offsets/1_10.h"
 #include "offsets/1_11.h"
@@ -32,6 +35,7 @@ void init_kdlsym()
     // Resolve symbols
     switch (g_fw_version) {
     case 0x1000000:
+    case 0x1010000:
     case 0x1020000:
     case 0x1050000:
     case 0x1100000:
@@ -74,7 +78,11 @@ uint64_t kdlsym(ksym_t sym)
 
     switch (g_fw_version) {
     case 0x1000000:
+        return g_kernel_base + g_sym_map_100[sym];
+    case 0x1010000:
+        return g_kernel_base + g_sym_map_101[sym];
     case 0x1020000:
+        return g_kernel_base + g_sym_map_102[sym];
     case 0x1050000:
         return g_kernel_base + g_sym_map_105[sym];
     case 0x1100000:

@@ -7,6 +7,8 @@
 #include "patch_shellcore.h"
 #include "proc.h"
 
+#include "shellcore_patches/1_00.h"
+#include "shellcore_patches/1_02.h"
 #include "shellcore_patches/1_12.h"
 #include "shellcore_patches/1_14.h"
 #include "shellcore_patches/2_00.h"
@@ -168,10 +170,23 @@ void apply_shellcore_patches()
     printf("apply_shellcore_patches: fw_ver = 0x%lx\n", fw_ver);
 
     switch (fw_ver) {
+    case 0x1000000:
+        patches = (struct patch *) &g_shellcore_patches_100;
+        num_patches = sizeof(g_shellcore_patches_100) / sizeof(struct patch);
+        break;
+    case 0x1010000:
+    case 0x1020000:
+        patches = (struct patch *) &g_shellcore_patches_102;
+        num_patches = sizeof(g_shellcore_patches_102) / sizeof(struct patch);
+        break;
+    case 0x1050000:
+    case 0x1100000:
+    case 0x1110000:
     case 0x1120000:
         patches = (struct patch *) &g_shellcore_patches_112;
         num_patches = sizeof(g_shellcore_patches_112) / sizeof(struct patch);
         break;
+    case 0x1130000:
     case 0x1140000:
         patches = (struct patch *) &g_shellcore_patches_114;
         num_patches = sizeof(g_shellcore_patches_114) / sizeof(struct patch);
