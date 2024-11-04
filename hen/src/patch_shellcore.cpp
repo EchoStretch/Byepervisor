@@ -17,6 +17,7 @@
 #include "shellcore_patches/2_26.h"
 #include "shellcore_patches/2_30.h"
 #include "shellcore_patches/2_50.h"
+#include "shellcore_patches/2_70.h"
 
 /**
  * @brief Implementation of read/write memory for a process (from kernel)
@@ -212,9 +213,12 @@ void apply_shellcore_patches()
         num_patches = sizeof(g_shellcore_patches_230) / sizeof(struct patch);
         break;
     case 0x2500000:
-    case 0x2700000:
         patches = (struct patch *) &g_shellcore_patches_250;
         num_patches = sizeof(g_shellcore_patches_250) / sizeof(struct patch);
+        break;
+    case 0x2700000:
+        patches = (struct patch *) &g_shellcore_patches_270;
+        num_patches = sizeof(g_shellcore_patches_270) / sizeof(struct patch);
         break;
     default:
         printf("apply_shellcore_patches: don't have offsets for this firmware\n");
