@@ -61,7 +61,7 @@ struct patch g_kernel_patches_220[] = {
     }, 
     {
         "sysveri flag",
-        0xDEADBEEF,
+        0x411CD70,
         "\x00",
         1
     }, 
