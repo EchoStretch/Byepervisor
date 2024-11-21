@@ -31,6 +31,8 @@ extern "C"
     int sceKernelSleep(int secs);
     int sceKernelLoadStartModule(char *name, size_t argc, const void *argv, uint32_t flags, void *unk, int *res);
     int __sys_is_development_mode();
+
+    int sceSystemStateMgrEnterStandby(void);
 }
 
 void dump_kernel_to_client(int client)
@@ -132,15 +134,15 @@ int main()
     // Check if this is a resume state or not, if it's not, prompt for restart and exit
     if (kernel_read4(kdlsym(KERNEL_SYM_DATA_CAVE)) != 0x1337) {
         // Notify the user that they have to suspend/resume their console
-        SOCK_LOG("[+] System needs to be suspended and resumed...\n");
-        flash_notification("Byepervisor\nEnter rest mode & resume");
+        flash_notification("[PS5HEN] Entering rest mode for in 3 secs\nRe-run Byepervisor after resuming to continue...");
         kernel_write4(kdlsym(KERNEL_SYM_DATA_CAVE), 0x1337);
-
-        return 0;
+        sleep(3);
+        sceSystemStateMgrEnterStandby();
+		return 0;
     }
     else
     {
-        SOCK_LOG("[+] Loading PS5HEN 1.0\n");
+    SOCK_LOG("[+] Loading PS5HEN 1.0\n");
 	flash_notification("Welcome To PS5HEN 1.0\nBy SpecterDev");
     }
 
