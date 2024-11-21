@@ -146,6 +146,96 @@ struct patch g_shellcore_patches_102[] = {
         0x47af30,
         "\x31\xC0\xFF\xC0\xC3",
         5
+    },
+
+    {
+        /*
+         * PS4 Disc Installer Patch 1
+         */
+        0x1DDB1B,
+        "\x90\xE9",
+        2
+    },
+
+    {
+        /*
+         * PS5 Disc Installer Patch 1
+         */
+        0x1DDB98,
+        "\x90\xE9",
+        2
+    },
+
+    {
+        /*
+         * PS4 PKG Installer Patch 1
+         */
+        0x1DDC9B,
+        "\xEB",
+        1
+    },
+
+    {
+        /*
+         * PS5 PKG Installer Patch 1
+         */
+        0x1DDD6F,
+        "\xEB",
+        1
+    },
+
+    {
+        /*
+         * PS4 PKG Installer Patch 2
+         */
+        0x1DE1DA,
+        "\x90\xE9",
+        2
+    },
+
+    {
+        /*
+         * Not Sure
+         */
+        0x1DE3AE,
+        "\xEB",
+        1
+    },
+
+    {
+        /*
+         * Not Sure
+         */
+        0x1DE75E,
+        "\x90\xE9",
+        2
+    },
+
+    {
+        /*
+         * Not Sure
+         */
+        0x1DE824,
+        "\x90\xE9",
+        2
+    },
+
+    {
+        /*
+         * PS4 PKG Installer Patch 3
+         */
+        0x41C6D7,
+        "\xEB",
+        1
+    },
+
+    {
+        /*
+         * PS5 PKG Installer Patch 2
+         */
+        0x41C7EC,
+        "\xEB",
+        1
     }
 };
 
