@@ -41,15 +41,28 @@ extern "C" {
     static volatile int enableHook6 = 1;
 }
 
+struct mtx {
+    uint8_t dontcare[0x18];
+    volatile uintptr_t mtx_lock;
+};
+
 SelfContext* getSelfContextByServiceId(uint32_t serviceId) {
     auto ctxTable       = (SelfContext *) kdlsym(KERNEL_SYM_CTXTABLE);
-    
+    auto ctxStatus       = (int*) kdlsym(KERNEL_SYM_CTXSTATUS);
+    auto ctxTableMtx    = (mtx*) kdlsym(KERNEL_SYM_CTXTABLE_MTX);
+    auto __mtx_lock_flags = (void(*)(volatile uintptr_t*, int, const char*, int)) kdlsym(KERNEL_SYM_MTX_LOCK_FLAGS);
+    auto __mtx_unlock_flags = (void(*)(volatile uintptr_t*, int, const char*, int)) kdlsym(KERNEL_SYM_MTX_UNLOCK_FLAGS);
+
+    __mtx_lock_flags(&ctxTableMtx->mtx_lock, 0, nullptr, 0);
     for(int i = 0; i < 4; i++) {
+        if(ctxStatus[i] != 3 && ctxStatus[i] != 4) { continue; }
         auto ctx = &ctxTable[i];
         if(ctx->unk1C == serviceId) {
+            __mtx_unlock_flags(&ctxTableMtx->mtx_lock, 0, nullptr, 0);
             return ctx;
         }
     }
+    __mtx_unlock_flags(&ctxTableMtx->mtx_lock, 0, nullptr, 0);
     return nullptr;
 }
 

@@ -140,11 +140,10 @@ int main()
     }
     else
     {
-        // Notify the user on second send that Hen is loaded
         SOCK_LOG("[+] Loading PS5HEN 1.0\n");
-	    flash_notification("Welcome To PS5HEN 1.0\nBy SpecterDev");
+	flash_notification("Welcome To PS5HEN 1.0\nBy SpecterDev");
     }
-    
+
     // Print out the kernel base
     SOCK_LOG("[+] Kernel base = 0x%lx\n", ktext(0));
 
@@ -187,7 +186,8 @@ int main()
 
     SOCK_LOG("[+] Aft. hook is_development_mode = 0x%x\n", __sys_is_development_mode());
 
-    run_self_server(9004);
     reset_mirrors();
+    run_self_server(9004);
+
     return 0;
 }
