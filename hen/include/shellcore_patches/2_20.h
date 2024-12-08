@@ -189,42 +189,6 @@ struct patch g_shellcore_patches_220[] = {
          * PS4 PKG Installer Patch 2
          */
         0x2161BA,
-        "\x90\xE9",
-        2
-    },
-
-    {
-        /*
-         * Not Sure
-         */
-        0x21638E,
-        "\xEB",
-        1
-    },
-
-    {
-        /*
-         * Not Sure
-         */
-        0x216745,
-        "\x90\xE9",
-        2
-    },
-
-    {
-        /*
-         * Not Sure
-         */
-        0x2167E2,
-        "\x90\xE9",
-        2
-    },
-
-    {
-        /*
-         * PS4 PKG Installer Patch 3
-         */
-        0x487B97,
         "\xEB",
         1
     },
@@ -233,6 +197,42 @@ struct patch g_shellcore_patches_220[] = {
         /*
          * PS5 PKG Installer Patch 2
          */
+        0x21638E,
+        "\x90\xE9",
+        2
+    },
+
+    {
+        /*
+         * PS4 PKG Installer Patch 3
+         */
+        0x216745,
+        "\x90\xE9",
+        2
+    },
+
+    {
+        /*
+         * PS5 PKG Installer Patch 3
+         */
+        0x2167E2,
+        "\x90\xE9",
+        2
+    },
+
+    {
+        /*
+         * PS4 PKG Installer Patch 4
+         */
+        0x487B97,
+        "\xEB",
+        1
+    },
+
+    {
+        /*
+         * PS5 PKG Installer Patch 4
+         */
         0x487CC3,
         "\xEB",
         1
@@ -240,7 +240,7 @@ struct patch g_shellcore_patches_220[] = {
 
     {
         /*
-         * PS4 PKG Installer Patch 4
+         * PKG Installer Patch
          */
         0x489B00,
         "\x48\x31\xC0\xC3",
