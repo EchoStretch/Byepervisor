@@ -6,8 +6,8 @@
 struct hook g_kernel_hooks_113[] = {
     {
         HOOK_TEST_SYS_IS_DEVELOPMENT_MODE,
-        0x44000,
-        0x907c2b
+        0x907c2b,
+        0x991880
     },
     {
         HOOK_FSELF_SCE_SBL_AUTHMGR_IS_LOADABLE_CALL_IS_LOADABLE,

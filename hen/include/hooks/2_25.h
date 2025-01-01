@@ -6,8 +6,8 @@
 struct hook g_kernel_hooks_225[] = {
     {
         HOOK_TEST_SYS_IS_DEVELOPMENT_MODE,
-        0x44000,
-        0x929cdb
+        0x929cdb,
+        0x9b7db0
     },
     {
         HOOK_FSELF_SCE_SBL_AUTHMGR_IS_LOADABLE_CALL_IS_LOADABLE,
