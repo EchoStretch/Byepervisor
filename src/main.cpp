@@ -142,8 +142,12 @@ int main()
     }
     else
     {
-    SOCK_LOG("[+] Loading PS5HEN 1.0\n");
-	flash_notification("Welcome To PS5HEN 1.0\nBy SpecterDev");
+    SOCK_LOG("[+] Loading PS5HEN By SpecterDev\n");
+	flash_notification(
+    	    "Welcome To PS5HEN 1.1\nPlayStation 5 FW: %u.%u\nBy SpecterDev",
+    	    (kernel_get_fw_version() >> 24) & 0xF,
+    	    ((kernel_get_fw_version() >> 20) & 0xF) * 10 + ((kernel_get_fw_version() >> 16) & 0xF)
+	);
     }
 
     // Print out the kernel base
