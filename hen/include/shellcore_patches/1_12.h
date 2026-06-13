@@ -3,7 +3,7 @@
 
 #include "common.h"
 
-struct patch g_shellcore_patches_112[] = {
+struct patch g_shellcore_patches_112_retail[] = {
     {
         /*
          * xor eax, eax; nop; nop; nop
@@ -237,6 +237,12 @@ struct patch g_shellcore_patches_112[] = {
         "\xEB",
         1
     }
+};
+
+struct patch g_shellcore_patches_112_devkit[] = {
+};
+
+struct patch g_shellcore_patches_112_testkit[] = {
 };
 
 #endif // SHELLCORE_PATCHES_1_12

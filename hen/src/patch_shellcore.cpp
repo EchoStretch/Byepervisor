@@ -30,6 +30,27 @@
  * @param write int32_t 1 for write, 0 for read
  * @return int 0 on success, error otherwise
  */
+
+bool sceKernelIsTestKit(void) {
+    return if_exists("/system/priv/lib/libSceDeci5Ttyp.sprx");
+}
+
+bool sceKernelIsDevKit(void) {
+    return if_exists("/system/priv/lib/libSceDeci5Dtracep.sprx");
+}
+
+enum kit_type {
+    KIT_RETAIL,
+    KIT_TESTKIT,
+    KIT_DEVKIT
+};
+
+static enum kit_type get_kit_type(void) {
+    if (sceKernelIsDevKit()) return KIT_DEVKIT;
+    if (sceKernelIsTestKit()) return KIT_TESTKIT;
+    return KIT_RETAIL;
+}
+
 int proc_rw_mem(void *p, off_t procAddr, size_t sz, void *kAddr, size_t *ioSz, int write)
 {
     // Assign kdlsym
@@ -170,60 +191,52 @@ void apply_shellcore_patches()
     fw_ver = get_fw_version();
     printf("apply_shellcore_patches: fw_ver = 0x%lx\n", fw_ver);
 
+    enum kit_type kit = get_kit_type();
+	
+	if (kit == KIT_RETAIL)
+	    printf("[HEN] [SHELLCORE] kit=RETAIL\n");
+	else if (kit == KIT_TESTKIT)
+	    printf("[HEN] [SHELLCORE] kit=TESTKIT\n");
+	else if (kit == KIT_DEVKIT)
+	    printf("[HEN] [SHELLCORE] kit=DEVKIT\n");
+
+	#define FW(x) \
+		case 0x ## x:\
+			switch (kit) { \
+				case KIT_DEVKIT: \
+					patches = (struct patch*)&g_shellcore_patches_##x##_devkit; \
+					num_patches = sizeof(g_shellcore_patches_##x##_devkit)/sizeof(struct patch); \
+					break; \
+				case KIT_TESTKIT: \
+					patches = (struct patch*)&g_shellcore_patches_##x##_testkit; \
+					num_patches = sizeof(g_shellcore_patches_##x##_testkit)/sizeof(struct patch); \
+					break; \
+				case KIT_RETAIL: \
+					patches = (struct patch*)&g_shellcore_patches_##x##_retail; \
+					num_patches = sizeof(g_shellcore_patches_##x##_retail)/sizeof(struct patch); \
+					break; \
+				} \
+				break
+
+
     switch (fw_ver) {
-    case 0x1000000:
-        patches = (struct patch *) &g_shellcore_patches_100;
-        num_patches = sizeof(g_shellcore_patches_100) / sizeof(struct patch);
-        break;
-    case 0x1010000:
-    case 0x1020000:
-        patches = (struct patch *) &g_shellcore_patches_102;
-        num_patches = sizeof(g_shellcore_patches_102) / sizeof(struct patch);
-        break;
-    case 0x1050000:
-    case 0x1100000:
-    case 0x1110000:
-    case 0x1120000:
-        patches = (struct patch *) &g_shellcore_patches_112;
-        num_patches = sizeof(g_shellcore_patches_112) / sizeof(struct patch);
-        break;
-    case 0x1130000:
-    case 0x1140000:
-        patches = (struct patch *) &g_shellcore_patches_114;
-        num_patches = sizeof(g_shellcore_patches_114) / sizeof(struct patch);
-        break;
-    case 0x2000000:
-        patches = (struct patch *) &g_shellcore_patches_200;
-        num_patches = sizeof(g_shellcore_patches_200) / sizeof(struct patch);
-        break;
-    case 0x2200000:
-        patches = (struct patch *) &g_shellcore_patches_220;
-        num_patches = sizeof(g_shellcore_patches_220) / sizeof(struct patch);
-        break;
-    case 0x2250000:
-        patches = (struct patch *) &g_shellcore_patches_225;
-        num_patches = sizeof(g_shellcore_patches_225) / sizeof(struct patch);
-        break;
-    case 0x2260000:
-        patches = (struct patch *) &g_shellcore_patches_226;
-        num_patches = sizeof(g_shellcore_patches_226) / sizeof(struct patch);
-        break;
-    case 0x2300000:
-        patches = (struct patch *) &g_shellcore_patches_230;
-        num_patches = sizeof(g_shellcore_patches_230) / sizeof(struct patch);
-        break;
-    case 0x2500000:
-        patches = (struct patch *) &g_shellcore_patches_250;
-        num_patches = sizeof(g_shellcore_patches_250) / sizeof(struct patch);
-        break;
-    case 0x2700000:
-        patches = (struct patch *) &g_shellcore_patches_270;
-        num_patches = sizeof(g_shellcore_patches_270) / sizeof(struct patch);
-        break;
+    FW(100);
+    FW(102);
+    FW(112);
+    FW(114);
+    FW(200);
+    FW(220);
+    FW(225);
+    FW(226);
+    FW(230);
+    FW(250);
+    FW(270);
+
     default:
         printf("apply_shellcore_patches: don't have offsets for this firmware\n");
         return;
     }
+    #undef FW
 
     // Get shellcore proc
     printf("[HEN] [SHELLCORE] Finding shellcore\n");

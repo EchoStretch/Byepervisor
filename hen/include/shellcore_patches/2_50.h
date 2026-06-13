@@ -3,7 +3,7 @@
 
 #include "common.h"
 
-struct patch g_shellcore_patches_250[] = {
+struct patch g_shellcore_patches_250_retail[] = {
     {
         /*
          * xor eax, eax; nop; nop; nop
@@ -246,6 +246,24 @@ struct patch g_shellcore_patches_250[] = {
         "\x48\x31\xC0\xC3",
         4
     }
+};
+
+struct patch g_shellcore_patches_250_devkit[] = {
+};
+
+struct patch g_shellcore_patches_250_testkit[] = {
+    { /* disable game error message */ 0x7C5B26, "\x90\x90\x90\x90\x90", 5}, 
+    { /* PS4 Disc Installer Patch 1 */ 0x220A5B, "\x90\xE9", 2},
+    { /* PS5 Disc Installer Patch 1 */ 0x220AD8, "\x90\xE9", 2},
+    { /* PS4 PKG Installer Patch 1 */ 0x220BDB, "\xEB", 1},
+    { /* PS5 PKG Installer Patch 1 */ 0x220CAF, "\xEB", 1},
+    { /* PS4 PKG Installer Patch 2 */ 0x22111A, "\x90\xE9", 2},
+    { /* PS5 PKG Installer Patch 2 */ 0x2212EE, "\xEB", 1},
+    { /* PS4 PKG Installer Patch 3 */ 0x2216A5, "\x90\xE9", 2},
+    { /* PS5 PKG Installer Patch 3 */ 0x221742, "\x90\xE9", 2},
+    { /* PS4 PKG Installer Patch 4 */ 0x492307, "\xEB", 1},
+    { /* PS5 PKG Installer Patch 4 */ 0x49241C, "\xEB", 1},
+    { /* PKG Installer */ 0x493D10, "\x48\x31\xC0\xC3", 4},
 };
 
 #endif // SHELLCORE_PATCHES_2_50
